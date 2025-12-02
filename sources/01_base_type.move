@@ -4,7 +4,7 @@ module move_base::base_type {
     use std::string;
     // 引用数据类型
     // 基本数据类型: bool，address ，uint
-    // mut： 变量值可表，所有数据类型
+    // mut： 变量值可变，所有数据类型
     public fun test_bool():bool {
         let mut _x: bool = true;
         _x=false ;

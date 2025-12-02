@@ -5,6 +5,7 @@ module move_base::base_abilities {
     // key: 类型可以作为链上对象的唯一 key（全局唯一标识） 
     // 注意 : 具有key 能力的类型 永远不能拥有drop 或 copy能力。
     // store : 类型可以存储在链上
+    
     // 定义可复制结构体
     public struct Point has copy, drop {
         x: u8,

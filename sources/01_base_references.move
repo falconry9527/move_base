@@ -30,7 +30,7 @@ module move_base::metro_pass{
     public fun recycle(card: Card) {
         assert!(card.uses == 0, EHasUses);
         let Card { uses: _ } = card;  
-        // 把 card 解构掉，让 Move 能正确销毁这个资源值，而不会报错。
+        // 把 card 解包，让 Move 能正确销毁这个资源值，而不会报错。
     }
 
     #[test]

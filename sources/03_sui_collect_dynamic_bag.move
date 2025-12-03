@@ -19,13 +19,13 @@ module move_base::bag_demo {
         transfer::transfer(list, tx_context::sender(ctx));
     }
 
-public  fun add(
-    list: &mut TodoList,
-    ctx: &mut TxContext
-) {
+    public  fun add(
+        list: &mut TodoList,
+        ctx: &mut TxContext
+    ) {
 
-list.todos.add(b"my_key", b"my_value".to_string());
-}
+    list.todos.add(b"my_key", b"my_value".to_string());
+    }
 
     public fun get(
         list: &TodoList,

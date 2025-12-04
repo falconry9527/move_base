@@ -54,3 +54,25 @@ public fun burn(
 public fun total_supply(treasury_cap: &TreasuryCap<MY_TOKEN>): u64 {
     coin::total_supply(treasury_cap)
 }
+
+/// 转账 - 将整个 Coin 转给接收者
+public fun transfer(
+    coin: Coin<MY_TOKEN>,
+    recipient: address
+) {
+    transfer::public_transfer(coin, recipient);
+}
+
+/// 转账指定数量 - 从 Coin 中拆分指定数量转给接收者
+/// 原 Coin 保留剩余金额
+public fun transfer_amount(
+    coin: &mut Coin<MY_TOKEN>,
+    amount: u64,
+    recipient: address,
+    ctx: &mut TxContext
+) {
+    // 从原 Coin 中拆分出指定数量
+    let split_coin = coin::split(coin, amount, ctx);
+    // 转给接收者
+    transfer::public_transfer(split_coin, recipient);
+}

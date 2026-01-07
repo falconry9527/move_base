@@ -20,7 +20,7 @@ struct 具有的 4 种能力（Ability）：
 copy：允许类型被复制；大多数原生数值类型默认具备该能力。
 drop：允许类型在作用域结束时被隐式丢弃；没有 drop 的类型 需要显式处理（例如 object::delete）。
 key：表示链上对象，有全局唯一 ID，可放在全局存储里作为对象；不能与 copy 或 drop 共存。
-store： 表示它可以被更自由地存到持久化结构里，并且在 Sui 里常被用来允许跨模块操作。
+store： 表示它可以作为元素被存到持久化结构里，并且 可以跨模块操作。
 
 transfer 和 public_transfer
 transfer<T: key> : 在当前调用模块里定义的对象类型 T

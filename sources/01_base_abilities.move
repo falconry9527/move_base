@@ -12,14 +12,19 @@ module move_base::base_abilities {
 
 object_table : value 通常需要是有 key 的 object,ObjectTable 是主对象的字段，用来管理子对象
 table : value 通常是基础类型，没有key的普通struct 实例 
+更具体地说：它允许该类型作为某个会被持久化的对象/资源的字段存在，或出现在最终会被持久化的容器
 
 二. struct 能力系统
 1.常规 
 struct 具有的 4 种能力（Ability）：
 copy：允许类型被复制；大多数原生数值类型默认具备该能力。
 drop：允许类型在作用域结束时被隐式丢弃；没有 drop 的类型 需要显式处理（例如 object::delete）。
-key：表示链上对象，具有唯一身份，可存在于全局存储并在账户之间转移；不能与 copy 或 drop 共存。
-store：允许类型作为字段或容器元素被存储于其他结构体中，与是否可转移无关：比如，BorrowPoolKey
+key：表示链上对象，有全局唯一 ID，可放在全局存储里作为对象；不能与 copy 或 drop 共存。
+store： 表示它可以被更自由地存到持久化结构里，并且在 Sui 里常被用来允许跨模块操作。
+
+transfer 和 public_transfer
+transfer<T: key> : 在当前调用模块里定义的对象类型 T
+public_transfer<T: key + store> : 跨模块转移对象类型 T , 要求T额外具备 store 能力
 
 2.1 特殊情况 ： Hot Potato 结构体（Move）
 没有任何能力的 struct
@@ -53,8 +58,6 @@ freeze_object：所有人只读的不可变状态，例如创建代币的原始�
 3.为什么 Sui 能并行执行交易
 Owned Object：不同 owner 的对象可并行
 Shared Object：用 shared version + 共识锁
-
-
 
 **/
 

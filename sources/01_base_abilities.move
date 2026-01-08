@@ -63,6 +63,7 @@ Shared Object：用 shared version + 共识锁
 使用 cetus swap： 需要循环执行（borrow借贷币-swap抵押币- supply抵押币）
 能不能使用 闪电贷，算好需要质押的总的抵押币， 直接从闪电贷种swap出足够的抵押币 ，然后从market-borrow池子借出借贷币 存入闪电贷 ： 需要支付闪电贷的手续费 
 
+
 **/
 
 

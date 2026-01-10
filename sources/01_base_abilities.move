@@ -1,7 +1,6 @@
 module move_base::base_abilities {
 
 /*
-
 一. 数据类型
 基础类型 : bool,address,u8,u128
 复合类型: string,struct,option,
@@ -58,10 +57,6 @@ freeze_object：所有人只读的不可变状态，例如创建代币的原始�
 3.为什么 Sui 能并行执行交易
 Owned Object：不同 owner 的对象可并行
 Shared Object：用 shared version + 共识锁
-
-循环贷：
-使用 cetus swap： 需要循环执行（borrow借贷币-swap抵押币- supply抵押币）
-能不能使用 闪电贷，算好需要质押的总的抵押币， 直接从闪电贷种swap出足够的抵押币 ，然后从market-borrow池子借出借贷币 存入闪电贷 ： 需要支付闪电贷的手续费 
 
 
 **/

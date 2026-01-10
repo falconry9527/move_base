@@ -23,11 +23,17 @@ fun equip_accessory() {
         name: b"John".to_string()
     });
 
-    let hat_id = dof::id(&character.id, b"hat_key").extract(); // Option<ID>
-    let hat_ref: &Accessory = dof::borrow(&character.id, b"hat_key");
-    let hat_mut: &mut Accessory = dof::borrow_mut(&mut character.id, b"hat_key");
+    let _hat_id = dof::id(&character.id, b"hat_key").extract(); // Option<ID>
+    let _hat_ref: &Accessory = dof::borrow(&character.id, b"hat_key");
+    let _hat_mut: &mut Accessory = dof::borrow_mut(&mut character.id, b"hat_key");
     let hat: Accessory = dof::remove(&mut character.id, b"hat_key");
 
-    sui::test_utils::destroy(hat);
-    sui::test_utils::destroy(character);
+    // 先 remove 拿到子对象所有权，再 transfer 给 recipient
+    let sender = tx_context::sender(ctx);
+    transfer::public_transfer(hat, sender);
+
+    // dynamic_field 的值是 store 数据（不是 object），如果要销毁 character，
+    // 需要先 remove 掉动态字段，否则 destroy 可能失败
+    let _metadata: Metadata = df::remove(&mut character.id, b"metadata_key");
+    std::unit_test::destroy(character);
 }
